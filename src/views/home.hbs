@@ -3,19 +3,9 @@
     <div class="band">
 
         <!-- If there are posts for creature in the database display each of them -->
-        
+
         {{#each movies}}
-        <div class="flip flip-vertical">
-            <div class="front">
-                <img src="{{imageUrl}}" alt="{{title}}">
-            </div>
-            <div class="back">
-                <h1>{{title}}</h1>
-                <h2>Genre: {{Genre}}</h2>
-                <p>Description: {{description}}</p>
-                <a href="/movies/{{id}}/details" class="details">Details</a>
-            </div>
-        </div>
+        {{>movie}}
         {{/each}}
 
         <!-- If there are still no posts in the database display: -->
