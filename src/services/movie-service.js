@@ -15,7 +15,8 @@ export default {
 
         movies.push({
             id: newid,
-            ...movieData
+            ...movieData,
+            rating: Numner(movieData.rating),
         });
 
         return newid;
