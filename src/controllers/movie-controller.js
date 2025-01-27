@@ -8,7 +8,7 @@ movieController.get('/search', (req, res) => {
     const filter = req.query;
     const movies = movieService.getAll(filter);
 
-    res.render('search', {movies});
+    res.render('search', {movies, filter});
 });
 
 movieController.get('/create', (req, res) => {
@@ -20,12 +20,12 @@ movieController.post('/create', (req, res) =>  {
 
     movieService.create(newMovie);
 
-    res.end();
+    res.end('/');
 });
 
-movieController.get('/:movieId/details', (req, res) => {
+movieController.get('/:movieId/details', async (req, res) => {
     const movieId = req.params.movieId;
-    const movie = movieService.findMovie(movieId);
+    const movie = await movieService.getOne(movieId);
 
     res.render('details', {movie});
 });

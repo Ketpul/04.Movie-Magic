@@ -1,7 +1,7 @@
-import { Schema, } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
 const movieSchema = new Schema({
-    titile: String,
+    title: String, // Коригирана е правописната грешка в 'titile'
     category: String,
     genre: String,
     director: String,
