@@ -1,14 +1,14 @@
 import { Schema, model } from 'mongoose';
 
 const movieSchema = new Schema({
-    title: String, // Коригирана е правописната грешка в 'titile'
+    title: String, 
     category: String,
     genre: String,
     director: String,
     year: Number,
-    imageURL: String,
+    imageUrl: String,
     rating: Number,
-    description: String,
+    description: String
 });
 
 const Movie = model('Movie', movieSchema);

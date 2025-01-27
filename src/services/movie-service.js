@@ -25,8 +25,9 @@ export default {
     create(movieData) {
         const result = Movie.create({
             ...movieData,
-            rating: Numner(movieData.rating),
+            rating: Number(movieData.rating),
             year:Number(movieData.year),
+            
         });
 
 
