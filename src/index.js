@@ -1,6 +1,7 @@
 import express from 'express';
 import handlebars from 'express-handlebars';
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
 
 import 'dotenv/config';
 
@@ -30,6 +31,7 @@ app.set('views', './src/views');
 
 app.use('/static', express.static('src/public'));
 app.use(express.urlencoded({extended: false}));
+app.use(cookieParser());
 
 
 
