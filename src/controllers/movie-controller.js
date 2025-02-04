@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import movieService from "../services/movie-service.js"
 import castService from '../services/cast-services.js';
+import { isAuthorized } from '../middlewares/auth-middleware.js';
 
 
 const movieController = Router();
@@ -13,7 +14,7 @@ movieController.get('/search', async (req, res) => {
     res.render('search', { movies, filter });
 });
 
-movieController.get('/create', (req, res) => {
+movieController.get('/create',isAuthorized, (req, res) => {
     res.render('create');
 });
 
@@ -52,7 +53,7 @@ movieController.post('/:movieId/attach-cast', async (req, res) => {
     res.redirect(`/movies/${movieId}/details`)
 });
 
-movieController.get('/:movieId/delete', async (req, res) => {
+movieController.get('/:movieId/delete', isAuthorized, async (req, res) => {
     const movieId = req.params.movieId;
 
     const movie = await movieService.getOne(movieId);

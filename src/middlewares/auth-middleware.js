@@ -24,3 +24,11 @@ export const authMiddleware = (req, res, next) => {
     }
 
 };
+
+export const isAuthorized = (req, res, next) => {
+    if(!req.user) {
+        return res.redirect('/auth/login');
+    }
+
+    next();
+}
