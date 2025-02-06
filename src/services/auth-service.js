@@ -5,25 +5,34 @@ import jwt from 'jsonwebtoken';
 const SECRET = process.env.JWT_SECRET;
 
 export default {
-    register(userData){
+    async register(userData) {
+        if (userData.password !== userData.rePassword) {
+            throw new Error('Password missmatch!');
+        }
+
+        const userCount = await User.countDocuments({ email: userData.email });
+        if (userCount > 0) {
+            throw Error('Email already exists');
+        }
+
         return User.create(userData);
     },
-    async login(email, password){
-        const user = await User.findOne({ email});
-        if(!user) {
+    async login(email, password) {
+        const user = await User.findOne({ email });
+        if (!user) {
             throw new Error('Invalid user or password');
         }
 
         const isValid = await bcrypt.compare(password, user.password);
-        if(!isValid){
-             throw new Error('Invalid user or password!');
+        if (!isValid) {
+            throw new Error('Invalid user or password!');
         }
 
         const payload = {
             id: user._id,
             email: user.email,
         }
-        const token = jwt.sign(payload, SECRET, {expiresIn: '2h' });
+        const token = jwt.sign(payload, SECRET, { expiresIn: '2h' });
 
         return token
     }
