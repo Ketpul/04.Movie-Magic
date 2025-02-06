@@ -6,7 +6,7 @@ const movieSchema = new Schema({
         required: true,
         minLength: 5,
         maxLength:250,
-        match: [/^[a-zA-Z 0-9]+$/,'Director should be alphanumeric, digit and whitespaces only!']
+        //match: [/^[a-zA-Z 0-9]+$/,'Director should be alphanumeric, digit and whitespaces only!']
     }, 
     category: String,
     genre: {
@@ -14,14 +14,14 @@ const movieSchema = new Schema({
         required: true,
         minLength: 5,
         maxLength:250,
-        match: [/^[a-zA-Z 0-9]+$/,'Genre should be alphanumeric, digit and whitespaces only!']
+        //match: [/^[a-zA-Z 0-9]+$/,'Genre should be alphanumeric, digit and whitespaces only!']
     }, 
     director: {
         type: String,
         required: true,
         minLength: 5,
         maxLength:250,
-        match: [/^[a-zA-Z 0-9]+$/,'Director should be alphanumeric, digit and whitespaces only!']
+        //match: [/^[a-zA-Z 0-9]+$/,'Director should be alphanumeric, digit and whitespaces only!']
     }, 
     year: {
         type: Number,
@@ -40,7 +40,7 @@ const movieSchema = new Schema({
     description: {
         type: String,
         minLength: 20,
-        match: /^[a-zA-Z 0-9]+$/,
+        
     },
     casts: [{
         type: Types.ObjectId,

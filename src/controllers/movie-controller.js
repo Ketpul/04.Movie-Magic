@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { getErrorMessage } from "../utils/error-utils.js"
 
 import movieService from "../services/movie-service.js"
 import castService from '../services/cast-services.js';
@@ -14,7 +15,7 @@ movieController.get('/search', async (req, res) => {
     res.render('search', { movies, filter });
 });
 
-movieController.get('/create',isAuthorized, (req, res) => {
+movieController.get('/create', isAuthorized, (req, res) => {
     res.render('create');
 });
 
@@ -81,7 +82,13 @@ movieController.post('/:movieId/edit', async (req, res) => {
     const movieData = req.body;
     const movieId = req.params.movieId;
 
-    await movieService.update(movieId, movieData);
+    try {
+        await movieService.update(movieId, movieData);
+
+    } catch (err) {
+        return res.render('movie/edit', {movie: movieData, error: getErrorMessage(err)})
+    }
+
 
     res.redirect(`/movies/${movieId}/details`)
 });
