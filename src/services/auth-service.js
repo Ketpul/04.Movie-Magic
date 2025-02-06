@@ -6,8 +6,8 @@ const SECRET = process.env.JWT_SECRET;
 
 export default {
     async register(userData) {
-        if (userData.password !== userData.rePassword) {
-            throw new Error('Password missmatch!');
+        if (userData.password !== userData['repeat-password']) {
+            throw new Error('Password miss match!');
         }
 
         const userCount = await User.countDocuments({ email: userData.email });
